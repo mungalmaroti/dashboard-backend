@@ -1,10 +1,22 @@
-import { Controller, Get, Req , Body } from '@nestjs/common';
+import { Controller, Get, Req , Body, Logger, Param } from '@nestjs/common';
 import { Request } from 'express';
+const {transports, createLogger, format} = require('winston');
 
-@Controller('/users')
+const logger = createLogger({
+    transports : [
+        new transports.Console({
+            level:'info'
+        })
+    ]
+});
+
+@Controller('api')
 export class UsersController {
-    @Get()
-    findAll(@Req() request: Request): any {
+    @Get('users/:uname/username/:pwd/password')
+    //findAll(@Req() request: Request): any {
+    findAll(@Param('uname') username: string, @Param('pwd') password: string): any { 
+        logger.log('Only a test');
+        let user = {uname: username,pwd:password} 
         const loginUser = [{
             username:'mung01',
             password:'mung@123',
@@ -18,6 +30,6 @@ export class UsersController {
             password:'sudhir@123',
             role:'sales'
         }]
-        return loginUser;
+        return user;
       }
 }
