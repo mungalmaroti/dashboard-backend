@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('photo')
+@Entity('users')
 export class Users {
-  @PrimaryGeneratedColumn() user_id: number;
+  @PrimaryGeneratedColumn() id: number;
 
-  @Column('varchar') user_name: string;
+  @Column('varchar') username: string;
 
-  @Column('varchar') PASSWORD: string;
+  @Column('varchar') password: string;
 
-  @Column('varchar') ROLE: string;
+  @Column('varchar') role: string;
 
 }
