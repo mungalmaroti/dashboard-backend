@@ -1,14 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class Photo {
-  @PrimaryGeneratedColumn()
-  user_id: number;
+@Entity('photo')
+export class Users {
+  @PrimaryGeneratedColumn() user_id: number;
 
-  @Column()
-  user_name: string;
+  @Column('varchar') user_name: string;
 
-  @Column()
-  PASSWORD: string;
+  @Column('varchar') PASSWORD: string;
+
+  @Column('varchar') ROLE: string;
 
 }
