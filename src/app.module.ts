@@ -5,9 +5,10 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import { EmployeeModule } from './employee/employee.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(),UsersModule],
+  imports: [TypeOrmModule.forRoot(),UsersModule, EmployeeModule],
   controllers: [],
   providers: [],
   exports: []
