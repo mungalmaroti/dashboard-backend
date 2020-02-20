@@ -6,23 +6,23 @@ import { EmplyoeeDto } from './employeeDto';
 @Controller('employee')
 export class EmployeeController {
     constructor(private emplyeeService:EmployeeService){}
-    @Get('getList')
+    @Get()
     async findALlEmp(): Promise<Employees[]> {
         return this.emplyeeService.getEmployeeList();
     }
 
-    @Post('create')
+    @Post()
     async create(@Body('body') body: any): Promise<Employees[]> {
-        Logger.log('contactData'+ body.EMPLOYEE_ID +'***********');
+        //Logger.log('contactData'+ body.EMPLOYEE_ID +'***********');
       return this.emplyeeService.create(body);
     }
 
-    @Put('update')
+    @Put()
     async update(@Body('id') id,@Body('body') body: Employees):Promise<Employees[]> {
         return this.emplyeeService.updateListEmp(id, body);
     }
 
-    @Delete('remove:id')
+    @Delete(':id')
     async removeEmployee(@Param('id') id):Promise<Employees[]>{
         return this.emplyeeService.destroy(id);
     }
