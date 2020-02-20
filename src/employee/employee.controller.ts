@@ -1,6 +1,7 @@
-import { Controller, Res, Get,HttpStatus, Put,Logger,Param,Body,Post } from '@nestjs/common';
+import { Controller, Get, Put,Logger,Body,Post,Delete, Param } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { Employees } from './employee.entity';
+import { EmplyoeeDto } from './employeeDto';
 
 @Controller('employee')
 export class EmployeeController {
@@ -9,14 +10,20 @@ export class EmployeeController {
     async findALlEmp(): Promise<Employees[]> {
         return this.emplyeeService.getEmployeeList();
     }
+
     @Post('create')
-    async create(@Body() contactData: Employees): Promise<any> {
-      return this.emplyeeService.create(contactData);
+    async create(@Body('body') body: any): Promise<Employees[]> {
+        Logger.log('contactData'+ body.EMPLOYEE_ID +'***********');
+      return this.emplyeeService.create(body);
     }
-    @Put('updateList:/getEditDetail')
-    async updateEployee(@Param('getEditDetail') getEdit): Promise<Employees[]>{
-        Logger.log('**********************************************');
-        Logger.log('Only a test',getEdit);
-        return this.emplyeeService.updateListEmp(getEdit);
+
+    @Put('update')
+    async update(@Body('id') id,@Body('body') body: Employees):Promise<Employees[]> {
+        return this.emplyeeService.updateListEmp(id, body);
+    }
+
+    @Delete('remove:id')
+    async removeEmployee(@Param('id') id):Promise<Employees[]>{
+        return this.emplyeeService.destroy(id);
     }
 }
