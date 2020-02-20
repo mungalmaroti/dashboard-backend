@@ -1,4 +1,4 @@
-import { Controller, Get, Req , Body, Logger, Param } from '@nestjs/common';
+import { Controller, Get, Req , Body, Logger, Param,Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Users } from './users.entity';
 
@@ -7,8 +7,9 @@ export class UsersController {
     
     constructor(private usersService: UsersService){}
 
-    @Get('users/:username/:password')
-    async findAll(@Param('username') username, @Param('password') password): Promise<Users[]> {
-        return this.usersService.findAuthUser(username,password);
+    @Get('users')
+    async findAll(@Query() login): Promise<Users[]> {
+        //Logger.log('*********'+login.username+'********')
+        return this.usersService.findAuthUser(login.username,login.password);
     }
 }
