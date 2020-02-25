@@ -12,4 +12,7 @@ export class UserDto {
 
     @IsNotEmpty()
     role: string;
+
+    @IsNotEmpty()
+    status: string;
 }

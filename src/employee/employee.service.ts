@@ -1,13 +1,18 @@
-import { Injectable,Logger } from '@nestjs/common';
+import { Injectable,Logger, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm/repository/Repository';
 import { InjectRepository } from '@nestjs/typeorm'
 import { Employees } from './employee.entity';
-
+//import { toEmployeeDto } from '../shared/mapping';
 
 @Injectable()
 export class EmployeeService {
     constructor(@InjectRepository(Employees) private employee:Repository<Employees>){}
     async getEmployeeList(): Promise<Employees[]>{
+        // const user = await this.employee.find();
+        // if (!user) {
+        //   throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+        // }
+        // return toEmployeeDto(user);
         return await this.employee.find();
     }
     async updateListEmp(EMPLOYEE_ID:number,body:Employees): Promise<Employees[]>{

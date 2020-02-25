@@ -10,4 +10,6 @@ export class Users {
 
   @Column('varchar') role: string;
 
+  @Column('varchar') status: string;
+
 }
